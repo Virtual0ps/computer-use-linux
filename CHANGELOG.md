@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- GTK4 delivered-event coordinate probe and an opt-in GTK3/MCP semantic-click
+  regression that verifies actual button activation at scales 1 and 2.
 - Explicit foreground `guard-accessibility` command with a passive AT-SPI
   listener and verified GNOME toolkit-accessibility reassertion. Ctrl-C or
   SIGTERM stops the guard without disabling other accessibility clients or
@@ -15,6 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optional `complete_interaction` MCP notification, enabled by
   `COMPUTER_USE_LINUX_NOTIFY_ON_COMPLETE=1`, with bounded notification execution
   and graceful handling of unavailable desktop notification services.
+
+### Fixed
+- Plain left element/selector clicks prefer recognized native AT-SPI activation
+  actions over toolkit bounds, avoiding GTK3 HiDPI and GTK4 zero-origin pointer
+  conversion when a matching action is available. Explicit coordinates, right
+  clicks, and multi-clicks preserve pointer semantics.
+- Clarified that relative click/scroll coordinates use the clipped window
+  screenshot crop origin before preview resizing, not raw surface or widget
+  coordinates, and require a window target.
 
 ## [0.5.0] - 2026-08-31
 

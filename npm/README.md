@@ -20,6 +20,14 @@ hermes mcp test computer-use-linux
 hermes mcp configure computer-use-linux
 ```
 
+For an optional MCP completion notification, set
+`COMPUTER_USE_LINUX_NOTIFY_ON_COMPLETE=1` in the server environment and have the
+agent call `complete_interaction` after its desktop work. `notify-send` must be
+installed with an available desktop notification service. The cue is best effort
+and does not provide exclusive desktop ownership.
+This cue is available only to directly spawned MCP hosts; the native Pi extension
+does not yet forward the flag or include the tool in its catalog.
+
 If accessibility is disabled, run `computer-use-linux setup`. Setup writes and
 reads back GNOME's `toolkit-accessibility` setting and warns if only runtime
 accessibility is available. Restart target apps if their trees remain empty.
